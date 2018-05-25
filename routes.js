@@ -1,22 +1,35 @@
 const express = require('express');
 const router = express.Router();
-//const Question = require('./model').Question;
-
+const usersFile = require('./users.json');
 
 router.get('/:dev', (req, res) => {
-  res.json({ response: `Hola ${req.params.dev}`  });
+  console.log(req.params);
+  res.json({ response: usersFile[req.params.dev - 1]  });
+});
+router.get('/', (req, res) => {
+  res.json({ response: req.query.dato});
 });
 router.post('/', (req, res) => {
+  console.log(req.body);
   res.json({
     response: 'a POST request for CREATING questions',
     body: req.body
   });
 });
-router.get('/:qID', (req, res) => {
+router.put('/:id', (req, res) => {
   res.json({
-    response: `a GET request for LOOKING at a special answer id: ${req.params.qID}`
+    response: 'a PUT request for CREATING questions',
+    body: req.body,
+    user: usersFile[req.params.id]
   });
 });
+router.delete('/', (req, res) => {
+  res.json({
+    response: 'a DELETE request for CREATING questions',
+    body: req.body
+  });
+});
+
 
 
 
