@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const usersFile = require('./users.json');
+const usersFile = require('../users.json');
+const UserController   = require('./../controllers/UserController');
+
 
 router.get('/:dev', (req, res) => {
   console.log(req.params);
